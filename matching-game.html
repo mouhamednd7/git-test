@@ -1,0 +1,87 @@
+<!-- 
+hen the game starts, five smiley faces are shown on the left and four are shown on the right. This is illustrated below.
+The left and right sides are identical, except for one thing: the left side has one extra face. The user needs to click on that extra face. If anything except the correct face is clicked, a message is displayed saying that the game is over. If the correct face is clicked, all the currently displayed faces are removed and a new set of faces is shown at random positions.
+
+Each time a new set of faces is shown there will be 5 more faces than before, on both the left and the right sides. There will always be one more face shown on the left than on the right. The other faces on the right and left will be identical in position to each other. 
+
+For example, let’s imagine you are playing the game shown in the previous figure. After clicking on the extra face (top middle) all the faces disappear and the following new set of faces are shown, at new random positions. As you can see, on both sides 5 more faces than before are shown.
+
+After playing the game by correctly clicking on the extra face many times, a lot of faces will be shown. This is illustrated below.
+
+
+
+ -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matching Game</title>
+</head>
+
+<!-- Css code goes here -->
+<style>
+    body {
+        font-family: sans-serif;
+    }
+    img {
+        position: absolute;
+    }
+    div {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+    }
+    #rightSide {
+        left: 500px;
+        border-left: 1px solid blue;
+    }
+</style>
+<body>
+    <h1>Matching Game</h1>
+    <p>Click on the extra smiling face on the left</p>
+    <div id="leftSide"></div>
+    <div id="rightSide"></div>
+
+    <!-- javascript code goes here -->
+    <script>
+        let numberOfFaces = 5;
+        const theLeftSide = document.getElementById('leftSide');
+        const theRightSide = document.getElementById('rightSide');
+        //Declare a function named generateFaces
+        function generateFaces() {
+            for (let i = 0; i < numberOfFaces; i++) {
+                const face = document.createElement('img');
+                face.src = 'smile.png';
+                face.style.top = Math.floor(Math.random() * 400) + 1 + 'px';
+                face.style.left = Math.floor(Math.random() * 400) + 1 + 'px';
+                theLeftSide.appendChild(face);
+            }
+            const leftSideImages = theLeftSide.cloneNode(true);
+            leftSideImages.removeChild(leftSideImages.lastChild);
+            theRightSide.appendChild(leftSideImages);
+            theLeftSide.lastChild.addEventListener('click', nextLevel);
+            document.addEventListener('click', gameOver);
+        }
+        function nextLevel() {
+            event.stopPropagation();
+            while (theLeftSide.firstChild) {
+                theLeftSide.removeChild(theLeftSide.firstChild);
+            }
+            while (theRightSide.firstChild) {
+                theRightSide.removeChild(theRightSide.firstChild);
+            }
+            numberOfFaces += 5;
+            generateFaces();
+        }
+        function gameOver() {
+            alert('Game Over!');
+            document.removeEventListener('click', gameOver);
+            theLeftSide.lastChild.removeEventListener('click', nextLevel);
+        }
+        window.addEventListener('load', generateFaces);
+    </script>
+</body>
+</html>
