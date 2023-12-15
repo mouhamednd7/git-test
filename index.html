@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster|Open+Sans" />
     <link rel="stylesheet" href="css/styles.scss" />
+    <script src="js/scripts.js" type="module"></script>
     <title>Nucamp: A Better Way To Camp</title>
 </head>
 
@@ -57,12 +58,18 @@
                             About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-list fa-lg"></i> Sites</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="contactus.html"><i
-                                class="fa-solid fa-address-card fa-lg"></i> Contact</a></li>
-                </ul>
-                <span class="navbar-text ms-auto">
-                    <a role="button" data-bs-toggle="modal" data-bs-target="#loginModal">
-                        <i class="fa-solid fa-right-to-bracket"></i> Login
+                    <li class="nav-item"><a class="nav-link" href="contactus.html"><i class="fa-solid fa-address-card fa-lg"></i>
+                            Contact</a></li>
+                    </ul>
+                    <!-- Weather Component -->
+                    <div id="weather" class="d-none d-md-flex align-items-center">
+                        <i id="weather-icon" class="fa-solid flex-wrap fa-cloud-bolt fa-fade fa-lg"></i>
+                        <span id="weather-temp"></span>
+                        <span id="weather-description" class="d-none d-lg-inline"></span>
+                    </div>
+                    <span class="navbar-text ms-auto">
+                        <a role="button" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            <i class="fa-solid fa-right-to-bracket"></i> Login
                     </a>
                 </span>
             </div>
@@ -294,15 +301,19 @@
                     <a href="http://youtube.com/"><i class="fa-brands fa-youtube fa-xl"></i></a>
                 </div>
                 <div class="col-sm-4 text-center">
-                    <i class="fa-solid fa-phone fa-lg text-primary"></i> 1-206-555-1234<br />
+                    <i class="fa-solid fa-phone fa-lg text-primary"></i>1-206-555-1234<br />
                     <i class="fa-solid fa-envelope fa-lg text-primary"></i> campsites@nucamp.co
                 </div>
             </div>
         </div>
     </footer>
-
     <!-- Bootstrap JavaScript plugins -->
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="./node_modules/js-yaml/dist/js-yaml.min.js">
+    </script>
+    <script type="module" src="./js/scripts.js">
+        
+
+    </script>
 
 </body>
 
